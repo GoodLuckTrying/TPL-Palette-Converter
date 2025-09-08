@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TPL Palette Converter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 TPL Palette Converter</h1>
+            <p>Convert RGB hex palettes to Tile Layer Pro / Tile Molester (TPL) format</p>
+        </header>
+
+        <div class="upload-section">
+            <h2>📁 Upload Existing TPL File</h2>
+            <div class="upload-controls">
+                <input type="file" id="tpl-upload" accept=".tpl" />
+                <button id="upload-btn" class="convert-btn">Load TPL File</button>
+            </div>
+            <div class="upload-info">
+                <p>Upload a TPL file to automatically populate both RGB and BGR input fields with the extracted palette data.</p>
+            </div>
+        </div>
+
+        <main>
+            <div class="input-section">
+                <h2>Input Format</h2>
+                <div class="format-tabs">
+                    <button class="tab-btn active" data-format="rgb">RGB Hex (16 lines)</button>
+                    <button class="tab-btn" data-format="bgr">BGR LSB Order</button>
+                </div>
+
+                <div class="input-container">
+                    <div id="rgb-input" class="input-area active">
+                        <label for="rgb-palette">Enter 16 RGB hex colors (one per line):</label>
+                        <textarea id="rgb-palette" placeholder="000000&#10;526384&#10;ff9c00&#10;7b9cbd&#10;c6d6f7&#10;ffffff&#10;f7ef8c&#10;c6b54a&#10;7b5a00&#10;9c7300&#10;d6ad84&#10;ffdeb5&#10;0063b5&#10;ce6b00&#10;8c1000&#10;080808"></textarea>
+                        <div class="palette-preview" id="rgb-preview"></div>
+                        <div class="conversion-controls">
+                            <button id="rgb-to-bgr-btn" class="convert-btn secondary">Convert to BGR LSB</button>
+                        </div>
+                    </div>
+
+                    <div id="bgr-input" class="input-area">
+                        <label for="bgr-palette">Enter BGR LSB order data:</label>
+                        <textarea id="bgr-palette" placeholder="00 00 8A 41 7F 02 6F 5E 58 7B FF 7F BE 47 D8 26 6F 01 D3 01 BA 42 7F 5B 80 59 B9 01 51 00 21 04"></textarea>
+                        <div class="palette-preview" id="bgr-preview"></div>
+                                                 <div class="warning-note">
+                             ⚠️ <strong>Note:</strong> The example BGR data may not convert to the exact RGB colors shown above. 
+                             Input your actual BGR data for accurate conversion.
+                         </div>
+                         <div class="info-note">
+                             ℹ️ <strong>Precision Note:</strong> Converting between RGB (8-bit) and BGR (15-bit) formats may result in slight color differences due to precision loss. 
+                             This is normal behavior for 15-bit color formats and matches retro game hardware limitations.
+                         </div>
+                        <div class="conversion-controls">
+                            <button id="bgr-to-rgb-btn" class="convert-btn secondary">Convert to RGB Hex</button>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="convert-btn" class="convert-btn">Convert to TPL</button>
+                
+                <div class="help-text">
+                    <p>💡 <strong>How to use:</strong></p>
+                    <ul>
+                        <li>Enter your palette data in either format above</li>
+                        <li>Use the conversion buttons to switch between formats</li>
+                        <li>Click "Convert to TPL" to generate the file</li>
+                        <li>The TPL content preview will appear below</li>
+                        <li>Click "Download TPL File" to save the binary TPL file</li>
+                        <li>Check the browser console (F12) for detailed conversion info</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="output-section" id="output-section" style="display: none;">
+                <h2>Output</h2>
+                <div class="tlp-preview">
+                    <h3>TPL File Preview (Text Format):</h3>
+                    <p class="format-note">Note: The actual downloaded file will be in binary TPL format for Tile Layer Pro</p>
+                    <pre id="tlp-content"></pre>
+                </div>
+                
+                <div class="download-section">
+                    <button id="download-btn" class="download-btn">Download TPL File</button>
+                    <span class="filename-info">File will be saved as: <code id="filename">palette.tpl</code></span>
+                </div>
+
+                <div class="palette-comparison">
+                    <h3>Palette Comparison</h3>
+                    <div class="comparison-grid">
+                        <div class="original-palette">
+                            <h4>Original</h4>
+                            <div id="original-colors"></div>
+                        </div>
+                        <div class="converted-palette">
+                            <h4>Converted</h4>
+                            <div id="converted-colors"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>TPL Palette Converter - For Tile Layer Pro & Tile Molester</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
