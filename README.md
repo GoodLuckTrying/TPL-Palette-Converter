@@ -2,7 +2,7 @@
 
 Deployed Page: https://goodlucktrying.github.io/TPL-Palette-Converter/
 
-A modern web application that converts RGB hex palettes to Tile Layer Pro / Tile Molester (TPL) format. Perfect for game developers, pixel artists, and retro game enthusiasts working with sprite palettes.
+A web application that converts RGB hex palettes to Tile Layer Pro / Tile Molester (TPL) format. Perfect for game developers, pixel artists, and retro game enthusiasts working with sprite palettes.
 
 ## ✨ Features
 
